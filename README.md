@@ -6,11 +6,12 @@
 
 > Note : My English is like my humor - quite dysfunctional but I'm working on it. Please let me know if you see any typo or bug and I'll try to fix it ASAP ;)
 
+* * *
 
 ## Installation
 
 ```
-npm install @tanguyscholtes/mailchecker
+npm install -g @tanguyscholtes/mailchecker
 ```
 
 And voilà ! You're good to go.
