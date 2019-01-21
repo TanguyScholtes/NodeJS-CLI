@@ -2,8 +2,8 @@
 
 const emailValidator = require( 'email-validator' );
 const axios = require( 'axios' );
-//let userEntry = process.argv[ 2 ];
-let userEntry = 'test@example.com';
+let userEntry = process.argv[ 2 ];
+//let userEntry = 'test@example.com';
 
 if ( emailValidator.validate( userEntry ) ) {
     // contact pwned with verified email address
