@@ -1,0 +1,40 @@
+{
+  "name": "becode-emailChecker",
+  "version": "0.0.1",
+  "description": "A CLI tool using NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "emailChecker": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanguyScholtes/NodeJS-CLI.git"
+  },
+  "keywords": [
+    "node",
+    "nodeJS",
+    "cli",
+    "js",
+    "javascript",
+    "email",
+    "security",
+    "breach",
+    "axios",
+    "isemail"
+  ],
+  "author": "Tanguy Scholtes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TanguyScholtes/NodeJS-CLI/issues"
+  },
+  "homepage": "https://github.com/TanguyScholtes/NodeJS-CLI#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "email-validator": "^2.0.4"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "emailChecker": "./index.js"
+  }
+}
