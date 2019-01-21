@@ -31,6 +31,7 @@
   "homepage": "https://github.com/TanguyScholtes/NodeJS-CLI#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "chalk": "^2.4.2",
     "email-validator": "^2.0.4"
   },
   "bin": {

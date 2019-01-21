@@ -3,6 +3,7 @@
 
 const emailValidator = require( 'email-validator' );
 const axios = require( 'axios' );
+const chalk = require( 'chalk' );
 let userEntry = process.argv[ 2 ];
 
 if ( emailValidator.validate( userEntry ) ) {
@@ -17,16 +18,16 @@ if ( emailValidator.validate( userEntry ) ) {
         responseType: 'json'
     } )
         .then( function ( response ) {
-            console.log( userEntry + ' has breaches in the following domains (out of 340) :\n' );
-            response.data.forEach( element => console.log( element.Name ) );
+            console.log( chalk.white( chalk.bold.blue( userEntry ) + ' has ' + chalk.bold.red( response.data.length + ' breaches' ) + ' (out of 340) on the following domains :\n' ) );
+            response.data.forEach( element => console.log( chalk.red( element.Name ) ) );
         } )
         .catch( function ( error ) {
             if ( error.response.status === 404 ) {
-                console.log( userEntry + ' doesn\'t have any breach. Congratulations !' );
+                console.log( chalk.green( userEntry + ' doesn\'t have any breach. Congratulations !' ) );
             } else {
-                console.log( 'Breaches check on ' + userEntry + ' failed with error code ' + error.response.status );
+                console.log( chalk.red( 'Breaches check on ' + userEntry + ' failed with error code ' + error.response.status ) );
             }
         } );
 } else {
-    console.log( userEntry + " is not valid. Please retry with a valid email adress." );
+    console.log( chalk.red( userEntry + " is not valid. Please retry with a valid email adress." ) );
 }
