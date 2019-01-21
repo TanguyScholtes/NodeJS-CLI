@@ -32,7 +32,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chalk": "^2.4.2",
-    "email-validator": "^2.0.4"
+    "email-validator": "^2.0.4",
+    "figlet": "^1.2.1"
   },
   "bin": {
     "emailChecker": "./index.js"
