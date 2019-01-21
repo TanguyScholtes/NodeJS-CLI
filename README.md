@@ -1,4 +1,4 @@
-# Becode - Email Checker
+# Becode - Mail Checker
 
 > A basic NodeJS CLI tool to check breaches in email addresses - part of BeCode's studentship
 
@@ -10,7 +10,7 @@
 ## Installation
 
 ```
-npm install @tanguyscholtes/emailChecker
+npm install @tanguyscholtes/mailchecker
 ```
 
 And voilà ! You're good to go.

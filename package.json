@@ -1,5 +1,5 @@
 {
-  "name": "@tanguyscholtes/emailChecker",
+  "name": "@tanguyscholtes/mailchecker",
   "version": "0.0.1",
   "description": "A CLI tool using NodeJS to check email breaches",
   "main": "index.js",
