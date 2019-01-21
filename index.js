@@ -8,19 +8,6 @@ const figlet = require( 'figlet' );
 
 let userEntry = process.argv[ 2 ];
 
-/*
-// display figlet's fonts list
-figlet.fonts(function(err, fonts) {
-    if (err) {
-        console.log('something went wrong...');
-        console.dir(err);
-        return;
-    }
-    console.dir(fonts);
-});
-return;
-*/
-
 figlet( "BeCode\nEmail Checker",
     {
         kerning: 'fitted',
@@ -36,28 +23,36 @@ figlet( "BeCode\nEmail Checker",
     }
 );
 
-if ( emailValidator.validate( userEntry ) ) {
-    // contact pwned with verified email address
-    // display result
+function validateEmail ( email ) {
+    if ( emailValidator.validate( email ) ) {
+        // contact pwned with verified email address
+        // display result
+        checkBreaches( email );
+    } else {
+        console.log( chalk.red( chalk.bold.cyan( email ) + " is not valid. Please retry with a valid email adress." ) );
+    }
+}
+
+function checkBreaches( email ) {
     axios( {
         method: 'get',
-        baseURL: 'https://haveibeenpwned.com/api/v2/breachedaccount/' + userEntry + '?truncateResponse=true',
+        baseURL: 'https://haveibeenpwned.com/api/v2/breachedaccount/' + email + '?truncateResponse=true',
         headers: {
             'User-Agent': 'emailChecker'
         },
         responseType: 'json'
     } )
         .then( function ( response ) {
-            console.log( chalk.white( chalk.bold.cyan( userEntry ) + ' has ' + chalk.bold.red( response.data.length + ' breaches' ) + ' (out of 340) on the following domains :\n' ) );
+            console.log( chalk.white( chalk.bold.cyan( email ) + ' has ' + chalk.bold.red( response.data.length + ' breaches' ) + ' (out of 340) on the following domains :\n' ) );
             response.data.forEach( element => console.log( chalk.red( element.Name ) ) );
         } )
         .catch( function ( error ) {
             if ( error.response.status === 404 ) {
-                console.log( chalk.green( chalk.bold.cyan( userEntry ) + ' doesn\'t have any breach. Congratulations !' ) );
+                console.log( chalk.green( chalk.bold.cyan( email ) + ' doesn\'t have any breach. Congratulations !' ) );
             } else {
-                console.log( chalk.red( 'Breaches check on ' + chalk.bold.cyan( userEntry ) + ' failed with error code ' + error.response.status ) );
+                console.log( chalk.red( 'Breaches check on ' + chalk.bold.cyan( email ) + ' failed with error code ' + error.response.status ) );
             }
         } );
-} else {
-    console.log( chalk.red( chalk.bold.cyan( userEntry ) + " is not valid. Please retry with a valid email adress." ) );
 }
+
+validateEmail( userEntry );

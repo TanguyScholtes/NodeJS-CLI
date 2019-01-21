@@ -30,7 +30,7 @@ Simply replace this example by the real email address you'd like to check for br
 ## Dependencies
 
 The core of this tool uses [email-validator](https://www.npmjs.com/package/email-validator) to validate emails (duh), [Have I Been Pwned](https://haveibeenpwned.com/)'s API to check for account breaches and [axios](https://www.npmjs.com/package/axios) to contact this API.  
-The fancy part comes from [chalk](https://www.npmjs.com/package/chalk) and their pretty colors.
+The fancy part comes from [chalk](https://www.npmjs.com/package/chalk) and their pretty colors, [figlet](https://www.npmjs.com/package/figlet) for the ASCII arts.
 
 Thanks to all of them for their great work. Keep being awesome !
 
