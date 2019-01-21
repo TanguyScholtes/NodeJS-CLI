@@ -1,11 +1,11 @@
 {
-  "name": "becode-emailChecker",
+  "name": "@tanguyscholtes/emailChecker",
   "version": "0.0.1",
-  "description": "A CLI tool using NodeJS",
+  "description": "A CLI tool using NodeJS to check email breaches",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "emailChecker": "node ."
+    "mailcheck": "node ."
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,6 @@
     "ora": "^3.0.0"
   },
   "bin": {
-    "emailChecker": "./index.js"
+    "mailcheck": "./index.js"
   }
 }

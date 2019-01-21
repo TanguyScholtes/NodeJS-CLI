@@ -10,7 +10,7 @@
 ## Installation
 
 ```
-npm install @tanguyscholtes/becode-emailChecker
+npm install @tanguyscholtes/emailChecker
 ```
 
 And voilà ! You're good to go.
@@ -21,7 +21,7 @@ And voilà ! You're good to go.
 Once you have completed the installation, you can simply check an email address by going in a terminal and typing :
 
 ```
-emailChecker test@example.com
+mailcheck test@example.com
 ```
 
 Simply replace this example by the real email address you'd like to check for breaches. Quite simple, hu ?
