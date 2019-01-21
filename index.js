@@ -1,9 +1,9 @@
+#!/usr/bin/env node
 //console.log( "Hello, Node.JS!" ); // display in bash with "node ." or "npm run emailChecker" as specified in package.json
 
 const emailValidator = require( 'email-validator' );
 const axios = require( 'axios' );
 let userEntry = process.argv[ 2 ];
-//let userEntry = 'test@example.com';
 
 if ( emailValidator.validate( userEntry ) ) {
     // contact pwned with verified email address
@@ -24,7 +24,7 @@ if ( emailValidator.validate( userEntry ) ) {
             if ( error.response.status === 404 ) {
                 console.log( userEntry + ' doesn\'t have any breach. Congratulations !' );
             } else {
-                console.log( error );
+                console.log( 'Breaches check on ' + userEntry + ' failed with error code ' + error.response.status );
             }
         } );
 } else {
