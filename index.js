@@ -9,20 +9,29 @@ const ora = require( 'ora' );
 
 let userEntry = process.argv[ 2 ];
 
-figlet( "BeCode\nEmail Checker",
-    {
-        kerning: 'fitted',
-        font: 'Doom'
-    },
-    function( error, string ) {
-        if ( error ) {
-            console.log( 'Whoops!' );
-            console.dir( error );
-            return;
+
+function displayHeader () {
+    figlet( "BeCode\nEmail Checker",
+        {
+            kerning: 'fitted',
+            font: 'Doom'
+        },
+        function( error, string ) {
+            if ( error ) {
+                console.log( 'Whoops!' );
+                console.dir( error );
+                return;
+            }
+            console.log( string );
         }
-        console.log( string );
-    }
-);
+    );
+
+    return new Promise( success => {
+        setTimeout( () => {
+            success( 'displayed' );
+        }, 100 );
+    } );
+}
 
 function validateEmail ( email ) {
     if ( emailValidator.validate( email ) ) {
@@ -34,7 +43,9 @@ function validateEmail ( email ) {
     }
 }
 
-function checkBreaches( email ) {
+async function checkBreaches( email ) {
+    const header = await displayHeader();
+
     // Start spinner while requesting API
     const spinner = ora( 'Checking for breaches...\n' ).start();
 
@@ -48,7 +59,7 @@ function checkBreaches( email ) {
     } )
         .then( function ( response ) {
             // Stop spinner
-            spinner.succeed( 'Checked !\n' );
+            spinner.succeed( 'Check completed !' );
             spinner.stop();
 
             // Display results
