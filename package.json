@@ -1,6 +1,6 @@
 {
   "name": "@tanguyscholtes/mailchecker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A CLI tool using NodeJS to check email breaches",
   "main": "index.js",
   "scripts": {
@@ -37,6 +37,7 @@
     "chalk": "^2.4.2",
     "email-validator": "^2.0.4",
     "figlet": "^1.2.1",
+    "gradient-string": "^1.2.0",
     "ora": "^3.0.0"
   },
   "bin": {

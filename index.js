@@ -6,9 +6,9 @@ const axios = require( 'axios' );
 const chalk = require( 'chalk' );
 const figlet = require( 'figlet' );
 const ora = require( 'ora' );
+const gradient = require( 'gradient-string' );
 
 let userEntry = process.argv[ 2 ];
-
 
 function displayHeader () {
     figlet( "BeCode\nEmail Checker",
@@ -22,7 +22,7 @@ function displayHeader () {
                 console.dir( error );
                 return;
             }
-            console.log( string );
+            console.log( gradient( 'rgb(45, 185, 210)', 'rgb(25, 85, 255)' )( string ) );
         }
     );
 
@@ -65,10 +65,14 @@ async function checkBreaches( email ) {
             // Display results
             console.log( chalk.white( chalk.bold.cyan( email ) + ' has ' + chalk.bold.red( response.data.length + ' breaches' ) + ' (out of 340) on the following domains :\n' ) );
             response.data.forEach( element => {
-                console.log( chalk.red( element.Name + ' (' + element.Domain + ')' ) );
+                console.log( chalk.yellow( ' • ' + element.Name + chalk.red( ' (' + element.Domain + ')' ) ) );
             } );
         } )
         .catch( function ( error ) {
+            // Stop spinner
+            spinner.succeed( 'Check completed !' );
+            spinner.stop();
+
             // API returns 404 error when no breach is found
             if ( error.response.status === 404 ) {
                 // If error is 404
