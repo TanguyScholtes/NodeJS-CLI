@@ -40,7 +40,7 @@ function checkBreaches( email ) {
 
     axios( {
         method: 'get',
-        baseURL: 'https://haveibeenpwned.com/api/v2/breachedaccount/' + email + '?truncateResponse=true',
+        baseURL: 'https://haveibeenpwned.com/api/v2/breachedaccount/' + email,
         headers: {
             'User-Agent': 'emailChecker'
         },
@@ -53,7 +53,9 @@ function checkBreaches( email ) {
 
             // Display results
             console.log( chalk.white( chalk.bold.cyan( email ) + ' has ' + chalk.bold.red( response.data.length + ' breaches' ) + ' (out of 340) on the following domains :\n' ) );
-            response.data.forEach( element => console.log( chalk.red( element.Name ) ) );
+            response.data.forEach( element => {
+                console.log( chalk.red( element.Name + ' (' + element.Domain + ')' ) );
+            } );
         } )
         .catch( function ( error ) {
             // API returns 404 error when no breach is found

@@ -1,6 +1,6 @@
 {
   "name": "@tanguyscholtes/mailchecker",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A CLI tool using NodeJS to check email breaches",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,10 @@
     "security",
     "breach",
     "axios",
-    "isemail"
+    "email-validator",
+    "ora",
+    "figlet",
+    "chalk"
   ],
   "author": "Tanguy Scholtes",
   "license": "MIT",
