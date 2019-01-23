@@ -8,6 +8,22 @@ const figlet = require( 'figlet' );
 const ora = require( 'ora' );
 const gradient = require( 'gradient-string' );
 
+let spinner = ora( {
+    text: 'Checking for breaches...\n',
+    spinner: {
+        interval: 80,
+		frames: [
+			"🌑 ",
+			"🌒 ",
+			"🌓 ",
+			"🌔 ",
+			"🌕 ",
+			"🌖 ",
+			"🌗 ",
+			"🌘 "
+        ]
+    }
+} );
 let userEntry = process.argv[ 2 ];
 
 function displayHeader () {
@@ -33,7 +49,9 @@ function displayHeader () {
     } );
 }
 
-function validateEmail ( email ) {
+async function validateEmail ( email ) {
+    const header = await displayHeader();
+
     if ( emailValidator.validate( email ) ) {
         // Email is valid
         checkBreaches( email );
@@ -43,11 +61,9 @@ function validateEmail ( email ) {
     }
 }
 
-async function checkBreaches( email ) {
-    const header = await displayHeader();
-
+function checkBreaches( email ) {
     // Start spinner while requesting API
-    const spinner = ora( 'Checking for breaches...\n' ).start();
+    spinner.start();
 
     axios( {
         method: 'get',
@@ -69,16 +85,20 @@ async function checkBreaches( email ) {
             } );
         } )
         .catch( function ( error ) {
-            // Stop spinner
-            spinner.succeed( 'Check completed !' );
-            spinner.stop();
-
             // API returns 404 error when no breach is found
             if ( error.response.status === 404 ) {
                 // If error is 404
+                // Stop spinner
+                spinner.succeed( 'Check completed !' );
+                spinner.stop();
+
                 console.log( chalk.green( chalk.bold.cyan( email ) + ' doesn\'t have any breach. Congratulations !' ) );
             } else {
                 // If error is something else than 404
+                // Stop spinner
+                spinner.fail( 'Check failed !' );
+                spinner.stop();
+
                 console.log( chalk.red( 'Breaches check on ' + chalk.bold.cyan( email ) + ' failed with error code ' + error.response.status ) );
             }
         } );
